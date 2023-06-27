@@ -47,7 +47,7 @@ make                        # build
 
   In the Coq session type:
 ```coq
-    Require Import Tuto0.Loader. HelloWorld.
+    Require Import Tuto0.Loader. Hello.
 ```
 
   You can also modify and run `theories/Demo.v`.

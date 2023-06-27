@@ -2,11 +2,11 @@ From Tuto0 Require Import Loader.
 
 (*** Printing messages ***)
 
-HelloWorld.
+Hello.
 
 Lemma test : True.
 Proof.
-hello_world.
+hello.
 Abort.
 
 (*** Printing warnings ***)

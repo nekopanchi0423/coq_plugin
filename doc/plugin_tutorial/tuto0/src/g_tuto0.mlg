@@ -13,18 +13,18 @@ let tuto_warn = CWarnings.create ~name:"name" ~category:"category"
 (*** Printing messages ***)
 
 (*
- * This defines a command that prints HelloWorld.
+ * This defines a command that prints Hello.
  * Note that Feedback.msg_notice can be used to print messages.
  *)
-VERNAC COMMAND EXTEND HelloWorld CLASSIFIED AS QUERY
-| [ "HelloWorld" ] -> { Feedback.msg_notice (strbrk Tuto0_main.message) }
+VERNAC COMMAND EXTEND Hello CLASSIFIED AS QUERY
+| [ "Hello" ] -> { Feedback.msg_notice (strbrk Tuto0_main.message) }
 END
 
 (*
  * This is a tactic version of the same thing.
  *)
 TACTIC EXTEND hello_world_tactic
-| [ "hello_world" ] ->
+| [ "hello" ] ->
   { let _ = Feedback.msg_notice (str Tuto0_main.message) in
     Tacticals.New.tclIDTAC }
 END
@@ -32,7 +32,7 @@ END
 (*** Printing warnings ***)
 
 (*
- * This defines a command that prints HelloWorld as a warning.
+ * This defines a command that prints Hello as a warning.
  * tuto_warn is defined at the top-level, before the command runs,
  * which is standard.
  *)
@@ -57,7 +57,7 @@ END
 (*** Printing errors ***)
 
 (*
- * This defines a command that prints HelloWorld inside of an error.
+ * This defines a command that prints Hello inside of an error.
  * Note that CErrors.user_err can be used to raise errors to the user.
  *)
 VERNAC COMMAND EXTEND HelloError CLASSIFIED AS QUERY
