@@ -3,6 +3,7 @@
 
 theories/Loader.v
 theories/Demo.v
+COQMF_CAMLFLAGS = "-bin-annot -annot -rectypes"
 
 src/inspector.mli
 src/inspector.ml

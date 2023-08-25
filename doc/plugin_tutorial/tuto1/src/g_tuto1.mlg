@@ -15,6 +15,47 @@ open Stdarg
 
 }
 
+(*** Countcons ***)
+(*
+ *コンストラクタの数を表示．
+ *)
+VERNAC COMMAND EXTEND Transfer CLASSIFIED AS QUERY
+| ["Finddef" ident(e1)] ->
+   {
+     let env = Global.env () in
+     let sigma = Evd.from_env env in
+     try
+       let t = Simple_print.simple_body_access (Nametab.global r) in
+       Feedback.msg_notice (Printer.pr_econstr_env env sigma t)
+     with Failure s ->
+       CErrors.user_err (str s)
+   }
+END
+
+(*** Transfer nat ***)
+(*
+ * Leanで定義したnatをLean-ImportによってCoqのスクリプトに変換したLeanのnatであるnatLをCoqで定義したnatに変換するコマンド．
+ * natLをnatに，natをnatLに変換する関数をそれぞれ定義する．
+ * これを使って，natLを利用している関数や定理の修正を行っていく．
+ *)
+
+(*VERNAC COMMAND EXTEND Transfer CLASSIFIED AS QUERY
+*| [ "Transfer" ident(e1) ident(e2)] ->
+*   {
+*     let env = Global.env () in
+*     let sigma = Evd.from_env env in
+*     let (sigma, t1) = Constrintern.interp_constr_evars env sigma e1 in
+*     let (sigma, t2) = Constrintern.interp_constr_evars env sigma e2 in
+*     match Reductionops.infer_conv env sigma t1 t2 with
+*     | Some _ ->
+*        Feedback.msg_notice (strbrk "Yes :)")
+*     | None ->
+*        Feedback.msg_notice (strbrk "No :(")
+*   }
+*END
+*)
+
+
 (*** Printing inputs ***)
 
 (*
